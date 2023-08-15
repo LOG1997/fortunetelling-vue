@@ -1,0 +1,62 @@
+@use "./function.scss" as *;
+@use "sass:map";
+$white: #eee;
+$colors: (
+    "success": #67c23a,
+    "warning": #e6a23c,
+    "danger": #f56c6c,
+    "error": #f56c6c,
+    "info": #909399,
+    "primary": #409eff,
+);
+.btn-style {
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #333;
+    &:hover {
+        color: $white;
+        background-color: #909399;
+    }
+    &.is-disabled {
+        cursor: not-allowed;
+        opacity: 0.65;
+    }
+}
+@mixin is-text($color_key) {
+    // color: #409eff;
+    background-color: transparent;
+    color: map.get($colors, $color_key);
+    border: none;
+    &:hover {
+        background-color: transparent;
+        color: lighten($color: map.get($colors, $color_key), $amount: 10);
+    }
+}
+@mixin is-plain($color_key) {
+    // color: #409eff;
+    background-color: transparent;
+    color: map.get($colors, $color_key);
+    &:hover {
+        color: $white;
+        background-color: lighten($color: map.get($colors, $color_key), $amount: 20);
+    }
+}
+@each $co_key, $co_value in $colors {
+    .is-plain.is-#{$co_key} {
+        @include is-plain($co_key);
+    }
+    .is-text.is-#{$co_key} {
+        @include is-text($co_key);
+    }
+    .is-#{$co_key} {
+        color: $white;
+        background-color: map.get($colors, $co_key);
+        border: 1px solid map.get($colors, $co_key);
+        &:hover {
+            color: $white;
+            background-color: lighten(map.get($colors, $co_key), 10);
+        }
+    }
+}
