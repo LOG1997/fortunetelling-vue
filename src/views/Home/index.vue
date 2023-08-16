@@ -1,9 +1,19 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref,reactive,onMounted } from 'vue';
 import lunisolar from 'lunisolar'
 import char8ex from 'lunisolar/plugins/char8ex'
-
+import {Char8plat} from '@/types/char8'
+import Char8Plat from '@/components/Char8Plat/index.vue'
 lunisolar.extend(char8ex)
+
+const personChar8ex=reactive<Char8plat>({
+    yearChar8:null,
+    monthChar8:null,
+    dayChar8:null,
+    hourChar8:null,
+}
+)
+
 const dateValue = ref('');
 const sex = ref<1|0>(1);
 const lunarDate = ref('');
@@ -17,7 +27,11 @@ const calcDate = () => {
 };
 const calcChar8 = () => {
     const c8ex = lunisolar(dateValue.value).char8ex(sex.value)
-    console.log(c8ex)
+    personChar8ex.yearChar8=c8ex.year;
+    personChar8ex.monthChar8=c8ex.month;
+    personChar8ex.dayChar8=c8ex.day;
+    personChar8ex.hourChar8=c8ex.hour;
+    console.log('😃personChar8ex:',personChar8ex)
 }
 onMounted(() => {
     dateValue.value = new Date().toString()
@@ -47,9 +61,9 @@ onMounted(() => {
             <el-button @click="calcChar8">获取天干地支</el-button>
         </div>
         <div>
+            <Char8Plat :personChar8ex="personChar8ex"></Char8Plat>
         </div>
         <div>
-
         </div>
     </div>
 </template>
