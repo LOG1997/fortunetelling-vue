@@ -1,18 +1,18 @@
 <script setup lang='ts'>
-import { PropType, toRef, watchEffect } from 'vue'
-import { Char8plat } from '@/types/char8'
-import { columnLabelList } from './config.ts'
+import { PropType, toRefs, watchEffect } from 'vue';
+import { Char8plat } from '@/types/char8';
+import { columnLabelList } from './config';
 const props = defineProps({
     personChar8ex: {
         type: Object as PropType<Char8plat>,
         required: true
     }
-})
-const personChar8exData = toRef(props.personChar8ex)
+});
+const personChar8exData = toRefs(props.personChar8ex);
 // 监听personChar8ex的变化
 watchEffect(() => {
-    console.log('😃personChar8ex:', props.personChar8ex, personChar8exData.value)
-})
+    console.log('😃personChar8ex:', props.personChar8ex, personChar8exData);
+});
 </script>
 
 <template>

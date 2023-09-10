@@ -15,4 +15,4 @@ export const columnLabelList = [
         id: 3,
         label: '時柱',
     },
-]
+];

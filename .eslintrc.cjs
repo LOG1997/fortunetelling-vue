@@ -28,7 +28,7 @@ module.exports = {
       },
     ],
     // 关闭typescript类型为any的警告
-    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/no-explicit-any": 1,
     // 驼峰命名，但忽略index
     "vue/multi-word-component-names": [
       "error",
@@ -38,7 +38,7 @@ module.exports = {
     ],
     "no-console": "warn",
     "no-debugger": "warn",
-    complexity: ["warn", { max: 5 }],
+    // complexity: ["warn", { max: 5 }],
     // 禁止使用多个空格
     "no-multi-spaces": "error",
     // 最大连续空行数
@@ -53,5 +53,10 @@ module.exports = {
     "eol-last": ["error", "always"],
     //禁止空格和 tab 的混合缩进
     "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+    // 禁止使用var
+    "no-var": "error",
+    // 末尾结尾必须有分号
+    semi: ["error", "always"],
+
   },
 };
