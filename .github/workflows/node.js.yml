@@ -28,7 +28,7 @@ jobs:
                 node-version: 18
                 cache: 'pnpm'
             - run: pnpm install
-            - run: pnpm run build --if-present
+            - run: pnpm run build
             - name: Deploy to gh-pages
               uses: crazy-max/ghaction-github-pages@v2
               with:
